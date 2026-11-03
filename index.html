@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Степногорск мұрасы</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Manrope', Arial, sans-serif;
+  background: #f7f6f1;
+  color: #20372d;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 25px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  z-index: 5;
+  color: white;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.logo span { color: #d5e2b4; }
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 13px;
+}
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 130px 9%;
+  color: white;
+  background:
+    linear-gradient(90deg, #102c22e8, #102c2240),
+    linear-gradient(0deg, #102c2260, transparent),
+    url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=90')
+    center/cover;
+}
+
+.eyebrow, .section-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.eyebrow { color: #d5e2b4; }
+
+.hero h1 {
+  font-size: clamp(43px, 7vw, 82px);
+  line-height: 1.1;
+  letter-spacing: -3px;
+  max-width: 850px;
+  margin: 24px 0;
+}
+
+.hero p {
+  max-width: 570px;
+  color: #e0e8df;
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.hero-button, .map-button {
+  display: inline-block;
+  width: fit-content;
+  padding: 15px 24px;
+  margin-top: 28px;
+  border-radius: 30px;
+  background: #d5e2b4;
+  color: #20372d;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 13px;
+  transition: .25s;
+}
+
+.hero-button:hover, .map-button:hover {
+  transform: translateY(-3px);
+  background: #e8efda;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.arrow span {
+  display: block;
+  font-size: 32px;
+  animation: down 1.5s infinite;
+}
+
+@keyframes down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.intro {
+  padding: 95px 9% 30px;
+}
+
+.section-label { color: #688254; }
+
+.intro h2, .map-title {
+  font-size: clamp(30px, 4vw, 45px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.25;
+  margin: 16px 0;
+}
+
+.intro p, .map-section p {
+  max-width: 720px;
+  color: #68766b;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.places {
+  padding: 35px 9% 100px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.place-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e7e6dc;
+  box-shadow: 0 8px 28px #20372d0b;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.place-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px #20372d16;
+}
+
+.photo {
+  height: 270px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-color: #d7dfd0;
+}
+
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #102c2270, transparent 65%);
+}
+
+.number {
+  position: absolute;
+  z-index: 1;
+  left: 22px;
+  bottom: 18px;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.card-content { padding: 27px; }
+
+.card-content h3 {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -.6px;
+  margin-bottom: 12px;
+}
+
+.card-content p {
+  font-size: 13px;
+  color: #68766b;
+  line-height: 1.9;
+  min-height: 50px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 15px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.btn-map {
+  background: #e9eee2;
+  color: #294b36;
+  border: 1px solid #dce5d4;
+}
+
+.btn-info {
+  background: #234936;
+  color: white;
+}
+
+.btn:hover {
+  opacity: .82;
+  transform: translateY(-2px);
+}
+
+.map-section {
+  padding: 85px 9%;
+  background: #e9ede3;
+}
+
+.map-section p { margin: 15px 0; }
+
+.map-button {
+  background: #234936;
+  color: white;
+}
+
+footer {
+  background: #183a2b;
+  color: #dce5d7;
+  padding: 40px 9%;
+  line-height: 2;
+  font-size: 12px;
+}
+
+footer strong {
+  font-size: 19px;
+}
+
+@media (max-width: 650px) {
+  header { padding: 20px 6%; }
+  .logo { font-size: 16px; }
+  nav a { margin-left: 9px; font-size: 11px; }
+  .hero { padding: 120px 7%; }
+  .hero h1 { letter-spacing: -1.5px; }
+  .intro, .places, .map-section {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  .places { grid-template-columns: 1fr; }
+  .photo { height: 230px; }
+  .card-content { padding: 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">STEP<span>●</span> / МҰРА</div>
+  <nav>
+    <a href="#about">Жоба туралы</a>
+    <a href="#places">Елді мекендер</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Қазақстан · Ақмола облысы · Степногорск қаласы</div>
+
+  <h1>Туған өлке.<br>Тірі тарих.</h1>
+
+  <p>
+    Степногорск қаласы мен жақын ауылдардың тарихын,
+    ерекше орындарын және мәдени мұрасын бірге зерттейік.
+    Әр мекеннің өз тарихы бар.
+  </p>
+
+  <a class="hero-button" href="#about">
+    Зерттеуді бастау ↗️
+  </a>
+
+  <a class="arrow" href="#about">
+    ТӨМЕН ТҮСУ
+    <span>↓</span>
+  </a>
+</section>
+
+<section class="intro" id="about">
+  <div class="section-label">БІЗДІҢ ӨЛКЕ</div>
+
+  <h2>Тарих осы жерден басталады.</h2>
+
+  <p>
+    Бұл сайт туған өлкеміздің тарихын сақтауға арналған.
+    Қала мен ауылдарды таңдап, олардың тарихи орындарын,
+    фотоларын, мекенжайларын және қызықты деректерін зертте.
+  </p>
+</section>
+
+<section class="places" id="places"></section>
+
+<section class="map-section">
+  <div class="section-label">КАРТА ЖӘНЕ БАҒЫТ</div>
+
+  <h2 class="map-title">Өлкені картадан зертте</h2>
+
+  <p>
+    Елді мекендердің орналасуын көріп, көшелер мен
+    ғимараттарды картадан ізде.
+  </p>
+
+  <a class="map-button"
+     href="https://www.openstreetmap.org/search?query=Stepnogorsk%2C%20Kazakhstan"
+     target="_blank" rel="noopener">
+    Степногорск картасын ашу ↗️
+  </a>
+</section>
+
+<footer>
+  <strong>STEP ● / МҰРА</strong><br>
+  Степногорск қаласы мен жақын ауылдардың тарихына арналған жоба.<br>
+  Тарихты зерттейік. Мұраны сақтайық.
+</footer>
+
+<script>
+const places = [
+  {
+    name: "Степногорск қаласы",
+    type: "ҚАЛА",
+    desc: "Степногорск қаласының іргесі 1959 жылы қаланды. Ал 1964 жылдан бастап қала мәртебесін алды.",
+    search: "Степногорск қаласы Қазақстан",
+    info: "Степногорск қаласының тарихы",
+    photo: "stepnogorsk.jpeg"
+  },
+  {
+    name: "Ақсу кенті",
+    type: "КЕНТ",
+    desc: "Ақмола облысының Степногорск қалалық әкімдігіне қарасты кент, Ақсу кенттік әкімдігі орталығы. Степногорскіден солтүстік-шығысқа қарай 18 км-дей жерде орналасқан.",
+    search: "Ақсу кенті Степногорск",
+    info: "Ақсу кенті Степногорск тарихы",
+    photo: "aksu.jpeg"
+  },
+  {
+    name: "Заводской кенті",
+    type: "КЕНТ",
+    desc: "Заводской кенті бастапқыда Құрылысшылар кенті деп аталған. Кейін Степногорск қаласының өндірістік аймағының дамуына байланысты 1968 жылы Заводской атауы берілді.",
+    search: "Заводской Степногорск",
+    info: "Заводской кенті Степногорск тарихы",
+    photo: "zavodskoe.jpeg"
+  },
+  {
+    name: "Бестөбе кенті",
+    type: "КЕНТ",
+    desc: "Бестөбе кентінің қалыптасуы алтын кен орнын игеруден басталды. Кен орнындағы өндіріс жұмыстары 1930-жылдары қолға алынып, 1940 жылы елді мекен жұмысшы кенті мәртебесін алды.",
+    search: "Бестөбе Степногорск",
+    info: "Бестөбе кентінің тарихы",
+    photo: "bestobe.jpeg"
+  },
+  {
+    name: "Шаңтөбе кенті",
+    type: "КЕНТ",
+    desc: "Шаңтөбе кенті. 1956 жылы пайдалы қазбаларды барлау және өндіру жұмыстарына байланысты қалыптасты. Уран өнеркәсібінің дамуы кенттің өсуіне ықпал етті. 1965 жылы кент мәртебесін алды.",
+    search: "Шаңтөбе Ақмола облысы",
+    info: "Шаңтөбе кентінің тарихы",
+    photo: "shantobe.jpeg"
+  },
+  {
+    name: "Қарабұлақ ауылы",
+    type: "АУЫЛ",
+    desc: "1970 жылы Степногорск қалалық кеңесінің қарауына берілді. 1998 жылы ауылдық округ құрылды.",
+    search: "Қарабұлақ ауылы Степногорск",
+    info: "Қарабұлақ ауылы Степногорск тарихы",
+    photo: "qarabulaq.jpeg"
+  },
+  {
+    name: "Қырыққұдық ауылы",
+    type: "АУЫЛ",
+    desc: "1998 жылы жеке әкімшілік елді мекен ретінде қалыптасты. Атауы қазақтың «қырық» және «құдық» сөздерінен шыққан. Степногорск қаласынан солтүстік-батысқа қарай 25 км-дей орналасқан.",
+    search: "Қырыққұдық Степногорск",
+    info: "Қырыққұдық ауылының тарихы",
+    photo: "q.jpeg"
+  },
+  {
+    name: "Бөгенбай ауылдық округі",
+    type: "АУЫЛДЫҚ ОКРУГ",
+    desc: "Ауылдың тарихы мен мәдени ерекшеліктері.",
+    search: "Бөгенбай ауылы Степногорск",
+    info: "Бөгенбай ауылының тарихы",
+    photo: "bogenbai.jpeg"
+  },
+  {
+    name: "Байқоңыс ауылы",
+    type: "АУЫЛ",
+    desc: "Байқоңыс ауылының тарихын таны.",
+    search: "Байқоңыс ауылы Степногорск",
+    info: "Байқоңыс ауылының тарихы",
+    photo: "baiqonys.jpg"
+  },
+  {
+    name: "Изобильный ауылы",
+    type: "АУЫЛ",
+    desc: "Ауылдың тарихы мен жергілікті орындары.",
+    search: "Изобильный Степногорск",
+    info: "Изобильный ауылының тарихы",
+    photo: "izobilnoe.jpg"
+  },
+  {
+    name: "Новокранштадка ауылы",
+    type: "АУЫЛ",
+    desc: "Новокронштадтка ауылы 1900 жылы құрылған. Қазақтың ұсақ шоқысы аумағында орналасқан. Пайдалы қазбалары: уран, алтын, гранит. Климаты: шұғыл континенттік",
+    search: "Новокронштадка Ақмола облысы",
+    info: "Новокронштадка ауылының тарихы",
+    photo: "novoqranshtatka.jpeg"
+  }
+];
+
+const container = document.getElementById("places");
+
+places.forEach((place, index) => {
+  const mapUrl =
+    "https://www.openstreetmap.org/search?query=" +
+    encodeURIComponent(place.search);
+
+  const infoUrl =
+    "https://www.google.com/search?q=" +
+    encodeURIComponent(place.info);
+
+  const card = document.createElement("article");
+  card.className = "place-card";
+
+  card.innerHTML = `
+    <div class="photo"
+      style="background-image:
+      linear-gradient(0deg,#183a2b20,#183a2b05),
+      url('images/${place.photo}')">
+      <div class="number">
+        ${String(index + 1).padStart(2, "0")} / ${place.type}
+      </div>
+    </div>
+
+    <div class="card-content">
+      <h3>${place.name}</h3>
+      <p>${place.desc}</p>
+
+      <div class="buttons">
+        <a class="btn btn-map"
+           href="${mapUrl}"
+           target="_blank" rel="noopener">
+          Мекенжай ↗️
+        </a>
+
+        <a class="btn btn-info"
+           href="${infoUrl}"
+           target="_blank" rel="noopener">
+          Толық ақпарат ↗️
+        </a>
+      </div>
+    </div>
+  `;
+
+  container.appendChild(card);
+});
+</script>
+
+</body>
+</html>
